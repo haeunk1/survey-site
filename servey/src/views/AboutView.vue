@@ -24,7 +24,8 @@ import { reactive } from "vue";
     data() {
       return {
         selectedFile: null,
-        list:[]
+        list:[],
+        servey_id:1
       };
     },
     mounted() {
@@ -41,6 +42,7 @@ import { reactive } from "vue";
         }
 
         const formData = new FormData();
+        formData.append('servey_id',this.servey_id);
         formData.append('file', this.selectedFile);
 
         try {
