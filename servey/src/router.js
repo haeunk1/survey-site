@@ -1,18 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Index from './pages/IndexPage.vue';
-import Login from './pages/LoginPage.vue';  // 잘못된 파일명 수정 (Index.vue -> Login.vue)
+import Login from './pages/LoginPage.vue';
+import Signup from './pages/SignupPage.vue';
 
 const routes = [
-  {
-    path: '/',
-    name: 'indexPage',
-    component: Index,
-  },
-  {
-    path: '/login',
-    name: 'loginPage',
-    component: Login,
-  },
+  { path: '/', name: 'indexPage', component: Index },
+  { path: '/login', name: 'loginPage', component: Login },
+  { path: '/signup', name: 'signupPage', component: Signup },
 ];
 
 const router = createRouter({
