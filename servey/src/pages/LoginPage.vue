@@ -1,35 +1,62 @@
 <template>
     <div class="login-container">
       <h2>Login</h2>
-      <form @submit.prevent="login">
-        <div class="form-group">
-          <label for="username">Username</label>
-          <input type="text" id="username" v-model="username" required />
+      <div class="form-group">
+          <label for="email">email</label>
+          <input type="text" id="email" v-model="email" required />
         </div>
         <div class="form-group">
           <label for="password">Password</label>
           <input type="password" id="password" v-model="password" required />
         </div>
         <div class="button-group">
-        <button @click="login" class="btn login-btn">로그인</button>
+        <button @click="isLoggedIn ? logout() : login()" class="btn login-btn">{{ isLoggedIn ? '로그아웃' : '로그인' }}</button>
         <button @click="register" class="btn register-btn">회원가입</button>
       </div>
-      </form>
     </div>
   </template>
   
   <script>
+  import axios from 'axios'
+  import {mapMutations, mapState, mapGetters } from 'vuex'
+
   export default {
     name: "LoginPage",
     data() {
       return {
-        username: "",
+        email: "",
         password: ""
       };
     },
+    computed:{
+      ...mapState(['accessToken']),
+      ...mapGetters(['isLoggedIn'])
+    },
     methods: {
-      login() {
-        alert(`Logging in as ${this.username}`);
+      ...mapMutations(['setAccessToken', 'clearAccessToken']),
+      async login() {
+        const requestData = {
+          email: this.email,
+          password: this.password
+        };
+        try {
+          const response = await axios.post('/api/auth/signIn', requestData, {
+              headers: {
+                'Content-Type': 'application/json',
+              },
+            });
+            console.log('응답:', response.data);
+            this.setAccessToken(response.data.accessToken);
+            alert(`로그인 되었습니다.`);
+            this.$router.push('/');
+
+          } catch (error) {
+            console.error('실패:', error);
+            alert("에러가 발생했습니다.")
+          }
+      },
+      logout() {
+        this.clearAccessToken();
       },
       register(){
         this.$router.push('/signup')

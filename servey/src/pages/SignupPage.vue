@@ -7,8 +7,8 @@
         <input type="email" id="email" v-model="email" required />
       </div>
       <div class="form-group">
-        <label for="username">이름</label>
-        <input type="text" id="username" v-model="username" required />
+        <label for="name">이름</label>
+        <input type="text" id="name" v-model="name" required />
       </div>
       <div class="form-group">
         <label for="password">비밀번호</label>
@@ -29,7 +29,7 @@ export default {
   name: "SignupPage",
   data() {
     return {
-      username: "",
+      name: "",
       email: "",
       password: "",
       confirmPassword: ""
@@ -42,26 +42,27 @@ export default {
         alert("비밀번호가 일치하지 않습니다.");
         return;
       }
-      // 회원가입 로직 처리 (API 요청 등)
-      const formData = new FormData();
-      formData.append('email',this.email);
-      formData.append('name', this.username);
-      formData.append('password', this.password);
-
+      // 회원가입 로직 처리 
+      const requestData = {
+          email: this.email,
+          name: this.name,
+          password: this.password
+        };
       try {
-        const response = await axios.post('/api/auth/signup', formData, {
+        const response = await axios.post('/api/auth/signUp', requestData, {
           headers: {
-            'Content-Type': 'multipart/form-data',
+            'Content-Type': 'application/json',
           },
         });
         console.log('응답:', response.data);
+        alert(`회원가입을 환영합니다, ${this.name}님!`);
+        this.$router.push('/login');
+
       } catch (error) {
         console.error('실패:', error);
+        alert("에러가 발생했습니다.")
       }
-      alert(`회원가입을 환영합니다, ${this.username}님!`);
       
-      // 예시로 메인 페이지로 이동 (원하는 경로로 변경 가능)
-      this.$router.push('/');
     }
   }
 };
