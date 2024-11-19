@@ -2,14 +2,31 @@
   <nav class="navbar">
     <ul>
       <li><router-link to="/">Home</router-link></li>
-      <li><router-link to="/login">Login</router-link></li>
+      <li v-if="isLoggedIn">
+        <button @click="logout">Logout</button>
+      </li>
+      <li v-else>
+        <router-link to="/login">Login</router-link>
+      </li>
     </ul>
   </nav>
 </template>
 
 <script>
+import {mapMutations, mapState, mapGetters } from 'vuex'
 export default {
   name: "MainNavbar",
+  computed:{
+      ...mapState('authStore',['accessToken']),
+      ...mapGetters('authStore',['isLoggedIn'])
+    },
+  methods:{
+    ...mapMutations('authStore',['clearAccessToken']),
+    logout(){
+      this.clearAccessToken();
+      alert("로그아웃 되었습니다.");
+    }
+  }
 };
 </script>
 

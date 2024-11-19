@@ -18,7 +18,7 @@
   
   <script>
   import axios from 'axios'
-  import {mapMutations, mapState, mapGetters } from 'vuex'
+  import {mapMutations, mapState } from 'vuex'
 
   export default {
     name: "LoginPage",
@@ -29,11 +29,10 @@
       };
     },
     computed:{
-      ...mapState(['accessToken']),
-      ...mapGetters(['isLoggedIn'])
+      ...mapState('authStore',['accessToken'])
     },
     methods: {
-      ...mapMutations(['setAccessToken', 'clearAccessToken']),
+      ...mapMutations('authStore',['setAccessToken']),
       async login() {
         const requestData = {
           email: this.email,
@@ -46,13 +45,13 @@
               },
             });
             console.log('응답:', response.data);
-            this.setAccessToken(response.data.accessToken);
+            this.setAccessToken(response.data.data.accessToken);
             alert(`로그인 되었습니다.`);
             this.$router.push('/');
 
           } catch (error) {
             console.error('실패:', error);
-            alert("에러가 발생했습니다.")
+            alert("에러가 발생했습니다.");
           }
       },
       logout() {
