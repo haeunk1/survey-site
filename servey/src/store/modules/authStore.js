@@ -1,7 +1,7 @@
 
-const authStore = {
-    namespaced: true,
-    state: {
+export default{
+    namespaced:true,
+    state:{
         accessToken: null,
     },
     mutations: {
@@ -15,5 +15,4 @@ const authStore = {
     getters: {
         isLoggedIn: state => !!state.accessToken
     }
-};
-export default authStore;
+}
