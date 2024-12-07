@@ -37,8 +37,9 @@
       <div class="post-list">
         <div v-for="post in posts" :key="post.id" class="post-card">
           <h3 class="post-title">{{ post.title }}</h3>
-          <p class="post-content">{{ post.enddate }}</p>
-          <button class="read-more-btn">더 보기</button>
+          <p class="post-content">마감일 : {{ post.enddate }}</p>
+          <p class="post-content">포인트 : {{ post.perPoint }}</p>
+          <router-link class="read-more-btn" :to="`/survey-detail/${post.surveyId}`">더 보기</router-link>
         </div>
       </div>
     </div>
@@ -55,14 +56,18 @@
 
       // 검색 및 정렬 관련 데이터
       searchQuery: "",     // 검색어
-      sortOption: "",      // 정렬 기준 (포인트 순, 마감일 순)
-      sortOrder: "",       // 정렬 순서 (오름차순, 내림차순)
+      sortOption: "ENDDATE",      // 정렬 기준 (포인트 순, 마감일 순)
+      sortOrder: "DESC",       // 정렬 순서 (오름차순, 내림차순)
 
       // 게시글 목록 데이터
       posts: [],
     };
   },
   computed: {
+    
+  },
+  mounted(){
+    this.search();
   },
   methods: {
     search() {
@@ -72,7 +77,7 @@
         orderType: this.sortOption + "_" + this.sortOrder
       };
 
-      axios.post('/api/servey/list', requestData, {
+      axios.post('/api/survey/list', requestData, {
         headers: {
           'Content-Type': 'application/json',
         },
@@ -85,7 +90,10 @@
       });
         
     },
-    
+    goToSurvey() {
+      // 설문조사 페이지로 이동
+      this.$router.push(`/surveyDetail/${this.survey.id}`);
+    },
   }
 };
 </script>

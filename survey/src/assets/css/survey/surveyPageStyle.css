@@ -1,0 +1,39 @@
+.survey-page {
+    padding: 2rem;
+  }
+  
+  .survey-title {
+    font-size: 1.75rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+    color: #333;
+  }
+  
+  .survey-question {
+    margin-bottom: 1.5rem;
+  }
+  
+  .survey-answer {
+    width: 100%;
+    min-height: 80px;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    margin-top: 0.5rem;
+  }
+  
+  .submit-survey-btn {
+    padding: 0.8rem 1.5rem;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .submit-survey-btn:hover {
+    background-color: #555;
+  }

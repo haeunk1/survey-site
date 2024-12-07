@@ -15,7 +15,7 @@ export default {
     return {
       selectedFile: null,
       list:[],
-      servey_id:1
+      survey_id:1
     };
   },
 
@@ -38,7 +38,7 @@ export default {
       }
 
       const formData = new FormData();
-      formData.append('servey_id',this.servey_id);
+      formData.append('survey_id',this.survey_id);
       formData.append('file', this.selectedFile);
 
       try {
@@ -53,7 +53,7 @@ export default {
       }
     },
     init(){
-      axios.get("/api/servey/list").then(({data}) => {
+      axios.get("/api/survey/list").then(({data}) => {
         this.list = data;
       })
     }

@@ -1,4 +1,4 @@
-# servey
+# survey
 
 ## Project setup
 ```
