@@ -47,7 +47,8 @@
             console.log('응답:', response.data);
             this.setAccessToken(response.data.data.accessToken);
             alert(`로그인 되었습니다.`);
-            this.$router.push('/');
+            const redirect = this.$route.query.redirect || '/';
+            this.$router.push(redirect);
 
           } catch (error) {
             console.error('실패:', error);

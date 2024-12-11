@@ -10,6 +10,7 @@
       <div class="survey-info">
         <p>마감일: {{ survey.enddate }}</p>
         <p>참여 시 포인트: {{ survey.perPoint }}P</p>
+        <p>선착순 : {{ survey.limitSubmit }}</p>
       </div>
   
       <!-- 설문조사 하러 가기 버튼 -->
@@ -18,31 +19,38 @@
   </template>
   
   <script>
+  import axios from 'axios'
+
   export default {
     name: 'SurveyDetailPage',
     props:['id'],
     data() {
       return {
         // 예시 설문조사 데이터
-        survey: {
-          id: 1,
-          title: '설문조사 제목 예시',
-          description: '이 설문조사는 사용자 경험에 대한 피드백을 얻기 위한 것입니다. 설문조사는 약 5분 정도 소요됩니다.',
-          enddate: '2024-12-31',
-          perPoint: 100,
-        },
+        survey: {},
         surveyId:null,
       };
     },
     mounted(){
         this.surveyId = this.$route.params.id;
         console.log(this.surveyId);
+        this.init();
     },
     methods: {
       goToSurvey() {
         // 설문조사 페이지로 이동
-        this.$router.push(`/survey/${this.survey.id}`);
+        this.$router.push(`/survey/${this.surveyId}`);
       },
+      init(){
+        axios.get(`/api/survey/${this.surveyId}`)
+        .then(response =>{
+          this.survey = response.data;
+          console.log(this.survey)
+        })
+        .catch(error => {
+          console.error('오류:', error);
+        });
+      }
     },
   };
   </script>
