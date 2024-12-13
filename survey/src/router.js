@@ -10,8 +10,8 @@ const routes = [
   { path: '/', name: 'indexPage', component: Index },
   { path: '/login', name: 'loginPage', component: Login },
   { path: '/signup', name: 'signupPage', component: Signup },
-  { path: '/survey-detail/:id', name: 'surveyDetailPage', component: SurveyDetailPage },
-  { path: '/survey/:id', name: 'surveyPage', component: SurveyPage , meta: { requiresAuth: true } },
+  { path: '/survey-detail/:id', name: 'surveyDetailPage', component: SurveyDetailPage, props:true },
+  { path: '/survey/:id', name: 'surveyPage', component: SurveyPage ,props:true, meta: { requiresAuth: true } },
 ];
 
 const router = createRouter({

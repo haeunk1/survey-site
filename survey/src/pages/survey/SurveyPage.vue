@@ -18,8 +18,11 @@
   </template>
   
   <script>
+  import axios from "axios";
+
   export default {
     name: 'SurveyPage',
+    props:['id'],
     data() {
       return {
         // 설문조사 정보
@@ -36,6 +39,16 @@
         // 답변 데이터
         answers: {},
       };
+    },
+    async beforeRouterEnter(){//to,from,next
+      //설문조사 참여 권한 확인
+      axios.get(`/api/check/submit-status/${this.id}`)
+      .then(response => {
+        console.log(response);
+      })
+      .error(error=>{
+        console.log(error);
+      })
     },
     methods: {
       submitSurvey() {
