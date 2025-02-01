@@ -18,7 +18,7 @@
   </template>
   
   <script>
-  import axios from "axios";
+  import {checkSubmitStatus} from "@/api/surveyService";
 
   export default {
     name: 'SurveyPage',
@@ -40,16 +40,19 @@
         answers: {},
       };
     },
-    beforeRouteEnter(to, from, next){ //컴포넌트 인스턴스가 생성되기 전에 실행
+    beforeRouteEnter(to, from){ //컴포넌트 인스턴스가 생성되기 전에 실행
       //설문조사 참여 권한 확인
-      axios.get(`/api/survey/check/submit-status/${to.params.id}`)
-      .then(response => {
-        console.log(response);
-      })
-      .catch(error=>{
-        console.log(error);
-      })
-      next();
+      const check = checkSubmitStatus(to.params.id);
+      console.log(check);
+      // axios.get(`/api/survey/check/submit-status/${to.params.id}`)
+      // .then(response => {
+      //   console.log(response);
+      // })
+      // .catch(error=>{
+      //   console.log(error);
+      // })
+      //next();
+      console.log(from);
 
     },
     methods: {
