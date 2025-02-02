@@ -7,7 +7,7 @@ const apiClient = axios.create({
     }
 });
 
-//요청 인터셉터 : 보든 요청에 JWT포함
+//요청 인터셉터 : 모든 요청에 JWT포함
 apiClient.interceptors.request.use(
     (config) => {
         const token = store.state.authStore.accessToken;

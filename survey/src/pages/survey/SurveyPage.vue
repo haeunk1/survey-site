@@ -18,7 +18,7 @@
   </template>
   
   <script>
-  import {checkSubmitStatus} from "@/api/surveyService";
+  import {checkSubmitStatus} from "@api/surveyService";
 
   export default {
     name: 'SurveyPage',
@@ -65,4 +65,4 @@
   };
   </script>
   
- <style src="@/assets/css/survey/surveyPageStyle.css"></style>
+ <style src="@assets/css/survey/surveyPageStyle.css"></style>

@@ -98,6 +98,6 @@
 };
 </script>
   
-<style src="@/assets/css/indexStyle.css"></style>
+<style src="@assets/css/indexStyle.css"></style>
 
   

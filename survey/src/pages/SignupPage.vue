@@ -67,40 +67,5 @@ export default {
   }
 };
 </script>
-<style scoped>
-.signup-container {
-  max-width: 400px;
-  margin: 50px auto;
-  padding: 2rem;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
 
-.form-group {
-  margin-bottom: 1rem;
-}
-
-input {
-  width: 95%;
-  padding: 0.5rem;
-  margin-top: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-button {
-  width: 100%;
-  padding: 0.75rem;
-  border: none;
-  background-color: #333;
-  color: white;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-button:hover {
-  background-color: #005f7a;
-}
-</style>
+<style src="@assets/css/signupStyle.css"></style>

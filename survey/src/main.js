@@ -6,3 +6,7 @@ createApp(App)
 .use(router)
 .use(store)
 .mount('#app')
+
+const token = localStorage.getItem('accessToken');
+if(token)
+    store.commit('authStore/setAccessToken',token);

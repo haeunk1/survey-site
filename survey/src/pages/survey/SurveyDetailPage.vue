@@ -42,7 +42,6 @@
         axios.get(`/api/survey/${this.id}`)
         .then(response =>{
           this.survey = response.data;
-          console.log(this.survey)
         })
         .catch(error => {
           console.error('오류:', error);
@@ -52,6 +51,6 @@
   };
 </script>
   
-<style src="@/assets/css/survey/surveyDetailPageStyle.css"></style>
+<style src="@assets/css/survey/surveyDetailPageStyle.css"></style>
 
   

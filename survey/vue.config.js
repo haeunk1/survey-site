@@ -16,8 +16,9 @@ module.exports = defineConfig({
     resolve: {
       alias: {
         '@': path.resolve(__dirname, 'src'), // 기본 @ 별칭 (src 폴더)
-        '@components': path.resolve(__dirname, 'src/components'), // @components 별칭 추가
-        '@assets': path.resolve(__dirname, 'src/assets'), // @components 별칭 추가
+        '@components': path.resolve(__dirname, 'src/components'),
+        '@assets': path.resolve(__dirname, 'src/assets'), 
+        '@api': path.resolve(__dirname, 'src/api'), 
       }
     }
   }

@@ -44,8 +44,9 @@
                 'Content-Type': 'application/json',
               },
             });
-            console.log('응답:', response.data);
-            this.setAccessToken(response.data.data.accessToken);
+            const token = response.data.data.accessToken;
+            this.setAccessToken(token);
+            localStorage.setItem('accessToken',token);
             alert(`로그인 되었습니다.`);
             const redirect = this.$route.query.redirect || '/';
             this.$router.push(redirect);
@@ -65,4 +66,4 @@
   };
   </script>
   
-  <style src="@/assets/css/loginStyle.css"></style>
+  <style src="@assets/css/loginStyle.css"></style>
